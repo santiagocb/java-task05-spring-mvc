@@ -1,4 +1,4 @@
-package com.ticketland.java_task05_spring_mvc;
+package com.ticketland;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

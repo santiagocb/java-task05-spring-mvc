@@ -1,4 +1,4 @@
-package com.ticketland.java_task05_spring_mvc;
+package com.ticketland;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
