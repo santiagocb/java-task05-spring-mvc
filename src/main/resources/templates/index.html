@@ -5,6 +5,19 @@
     <title>Ticketland Home</title>
 </head>
 <body>
-<h1 th:text="${message}">Welcome message</h1>
+<h1>Welcome to Ticketland!</h1>
+<h2>User List</h2>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}">User ID</td>
+        <td th:text="${user.name}">User Name</td>
+        <td th:text="${user.email}">User Email</td>
+    </tr>
+</table>
 </body>
 </html>
