@@ -1,28 +1,25 @@
 package com.ticketland.controllers;
 
 import com.ticketland.entities.User;
-import com.ticketland.repositories.UserRepository;
+import com.ticketland.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
-import java.util.stream.StreamSupport;
 
 @Controller
 public class UserController {
 
-    private UserRepository userRepository;
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping("/home")
     public String home(Model model) {
-
-        List<User> users = StreamSupport.stream(userRepository.findAll().spliterator(), false).toList();
-        System.out.println(users);
-
+        List<User> users = userService.getAll();
         model.addAttribute("users", users);
         return "index";
     }
