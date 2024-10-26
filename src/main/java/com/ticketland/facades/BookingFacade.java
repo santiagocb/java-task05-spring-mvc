@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookingFacade {
 
@@ -55,32 +57,23 @@ public class BookingFacade {
         userAccountService.refillBalance(userId, amount);
     }
 
-    public void showAllUserAccounts() {
-        logger.info("All user accounts: [{}] {}",
-                userAccountService.findAll().size(),
-                userAccountService.findAll().stream().map(u -> u.getId() + " Balance:" + u.getBalance() + " User:" + u.getUser().getName()).toList()
-        );
+    public List<UserAccount> getAllUserAccounts() {
+        return userAccountService.findAll();
     }
 
-    public void showAllTickets() {
-        logger.info("All tickets: [{}] {}",
-                ticketService.findAll().size(),
-                ticketService.findAll().stream().map(t -> t.getId() + " User:" + t.getUser().getId() + " Event:" + t.getEvent().getId()).toList()
-        );
+    public List<Ticket> showAllTickets() {
+        return ticketService.findAll();
     }
 
-    public void showAllEvents() {
-        logger.info("All events: [{}] {}",
-                eventService.findAll().size(),
-                eventService.findAll().stream().map(e -> e.getId() + " " + e.getName() + " " + e.getTicketPrice()).toList()
-        );
+    public Event createEvent(Event event) {
+        return eventService.create(event);
     }
 
-    public void showTicketsByUserAccountId(String userAccountId) {
-        logger.info("All tickets of User with ID {}: [{}] {}",
-                userAccountService,
-                ticketService.findTicketsByAccountUserId(userAccountId).size(),
-                ticketService.findTicketsByAccountUserId(userAccountId).stream().map(t -> t.getId() + " User:" + t.getUser().getId() + " Event:" + t.getEvent().getId()).toList()
-        );
+    public List<Event> showAllEvents() {
+        return eventService.findAll();
+    }
+
+    public List<Ticket> showTicketsByUserAccountId(String userAccountId) {
+        return ticketService.findTicketsByAccountUserId(userAccountId);
     }
 }

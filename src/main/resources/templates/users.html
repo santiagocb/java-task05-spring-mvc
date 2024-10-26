@@ -11,11 +11,13 @@
         <th>ID</th>
         <th>Name</th>
         <th>Email</th>
+        <th>Balance</th>
     </tr>
     <tr th:each="u : ${users}">
         <td th:text="${u.id}">User ID</td>
-        <td th:text="${u.name}">User Name</td>
-        <td th:text="${u.email}">User Email</td>
+        <td th:text="${u.getUser().getName()}">User Name</td>
+        <td th:text="${u.getUser().getEmail()}">User Email</td>
+        <td th:text="${u.balance}">Balance</td>
     </tr>
 </table>
 

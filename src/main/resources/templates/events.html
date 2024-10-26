@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Event</title>
+</head>
+<body>
+<h1>Event List</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Place</th>
+        <th>Date</th>
+    </tr>
+    <tr th:each="e : ${events}">
+        <td th:text="${e.id}">Event ID</td>
+        <td th:text="${e.name}">Event Name</td>
+        <td th:text="${e.place}">Event Place</td>
+        <td th:text="${e.date}">Event Date</td>
+    </tr>
+</table>
+
+<h1>Create New Event</h1>
+<form th:action="@{/events}" th:object="${event}" method="post">
+    <p>Id: <input type="text" th:field="*{id}" required/></p>
+    <p>Name: <input type="text" th:field="*{name}" required/></p>
+    <p>Place: <input type="text" th:field="*{place}" required/></p>
+    <p>Date: <input type="date" th:field="*{date}" required/></p>
+    <p>Ticket Price: <input type="number" step="0.01" th:field="*{ticketPrice}" required/></p>
+    <p><input type="submit" value="Create Event"/></p>
+</form>
+</body>
+</html>
+
+
+004,RealVision,Jardin Botanico,2024-12-19,200

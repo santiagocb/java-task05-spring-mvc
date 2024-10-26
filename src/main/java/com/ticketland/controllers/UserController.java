@@ -1,13 +1,12 @@
 package com.ticketland.controllers;
 
 import com.ticketland.entities.User;
+import com.ticketland.entities.UserAccount;
 import com.ticketland.facades.BookingFacade;
-import com.ticketland.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -15,11 +14,9 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    private final UserService userService;
     private final BookingFacade bookingFacade;
 
-    public UserController(UserService userService, BookingFacade bookingFacade) {
-        this.userService = userService;
+    public UserController(BookingFacade bookingFacade) {
         this.bookingFacade = bookingFacade;
     }
 
@@ -29,8 +26,8 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public String showUserForm(Model model) {
-        List<User> users = userService.getAll();
+    public String renderUserForm(Model model) {
+        List<UserAccount> users = bookingFacade.getAllUserAccounts();
         model.addAttribute("user", new User());
         model.addAttribute("users", users);
         return "users";
