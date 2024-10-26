@@ -14,10 +14,10 @@
         <th>Balance</th>
     </tr>
     <tr th:each="u : ${users}">
-        <td th:text="${u.id}">User ID</td>
+        <td th:text="${u.getId()}">User ID</td>
         <td th:text="${u.getUser().getName()}">User Name</td>
         <td th:text="${u.getUser().getEmail()}">User Email</td>
-        <td th:text="${u.balance}">Balance</td>
+        <td th:text="${u.getBalance()}">Balance</td>
     </tr>
 </table>
 

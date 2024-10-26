@@ -29,6 +29,8 @@ public class UserController {
     @GetMapping("/users")
     public String renderUserForm(Model model) {
         List<UserAccount> users = bookingFacade.getAllUserAccounts();
+        System.out.println(users);  // Debugging line
+
         model.addAttribute("user", new User());
         model.addAttribute("users", users);
         return "users";

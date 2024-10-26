@@ -9,16 +9,12 @@ import com.ticketland.services.EventService;
 import com.ticketland.services.TicketService;
 import com.ticketland.services.UserAccountService;
 import com.ticketland.services.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class BookingFacade {
-
-    public static final Logger logger = LoggerFactory.getLogger(BookingFacade.class);
 
     private final UserService userService;
     private final UserAccountService userAccountService;
@@ -41,7 +37,7 @@ public class BookingFacade {
         return userAccountService.findByUserId(userId);
     }
 
-    public void bookTicket(String userId, String eventId) throws InsufficientFundsException {
+    public Ticket bookTicket(String userId, String eventId) throws InsufficientFundsException {
         UserAccount account = userAccountService.findByUserId(userId);
         Event event = eventService.findByEventId(eventId);
 
@@ -50,7 +46,7 @@ public class BookingFacade {
         }
         userAccountService.refillBalance(userId, event.getTicketPrice() * -1);
 
-        ticketService.generate(new Ticket(account, event));
+        return ticketService.generate(new Ticket(account, event));
     }
 
     public void refillAccount(String userId, double amount) {

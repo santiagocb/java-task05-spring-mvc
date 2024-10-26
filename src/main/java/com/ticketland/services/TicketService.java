@@ -1,8 +1,6 @@
 package com.ticketland.services;
 
-import com.ticketland.entities.Event;
 import com.ticketland.entities.Ticket;
-import com.ticketland.entities.User;
 import com.ticketland.entities.UserAccount;
 import com.ticketland.repositories.TicketRepository;
 import jakarta.transaction.Transactional;
@@ -22,8 +20,8 @@ public class TicketService {
         this.ticketRepository = ticketRepository;
     }
 
-    public void generate(Ticket ticket) {
-        ticketRepository.save(ticket);
+    public Ticket generate(Ticket ticket) {
+        return ticketRepository.save(ticket);
     }
 
     public List<Ticket> findTicketsByAccountUserId(String userAccountId) {
