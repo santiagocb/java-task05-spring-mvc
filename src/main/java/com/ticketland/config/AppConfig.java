@@ -1,5 +1,6 @@
 package com.ticketland.config;
 
+import com.ticketland.exceptions.CustomExceptionResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
@@ -13,9 +14,9 @@ public class AppConfig {
         return marshaller;
     }
 
-    /*
+
     @Bean
     public CustomExceptionResolver customExceptionResolver() {
         return new CustomExceptionResolver();
-    } */
+    }
 }
