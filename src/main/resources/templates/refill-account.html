@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Refill Account</title>
+</head>
+<body>
+<h1>Refill Account</h1>
+<form th:action="@{/refill-account}" method="post">
+    <p>User ID: <input type="text" name="userId" /></p>
+    <p>Amount: <input type="number" name="amount" /></p>
+    <p><input type="submit" value="Refill" /></p>
+</form>
+</body>
+</html>

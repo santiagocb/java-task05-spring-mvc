@@ -18,6 +18,8 @@ public class UserService {
     }
 
     public void register(User user) {
+        System.out.println(user.getId());
+        System.out.println(user.getName());
         userRepository.save(user);
     }
 
