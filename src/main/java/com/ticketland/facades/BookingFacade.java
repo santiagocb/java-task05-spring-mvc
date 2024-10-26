@@ -69,6 +69,10 @@ public class BookingFacade {
         return eventService.create(event);
     }
 
+    public Event getEventById(String eventId) {
+        return eventService.findByEventId(eventId);
+    }
+
     public List<Event> getAllEvents() {
         return eventService.findAll();
     }
@@ -79,5 +83,9 @@ public class BookingFacade {
 
     public List<Ticket> getBookedTickets(UserAccount userAccount, int pageSize, int pageNum) {
         return ticketService.getBookedTickets(userAccount, pageSize, pageNum);
+    }
+
+    public void preloadTickets(List<Ticket> tickets) {
+        ticketService.preloadTickets(tickets);
     }
 }

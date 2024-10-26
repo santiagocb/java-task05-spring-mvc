@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Upload Tickets XML</title>
+</head>
+<body>
+
+<h2>Upload Tickets XML</h2>
+
+<form th:action="@{/tickets/upload}" method="post" enctype="multipart/form-data">
+    <label for="file">Select XML File:</label>
+    <input type="file" id="file" name="file" accept=".xml" required/>
+    <br/>
+    <button type="submit">Upload</button>
+</form>
+
+<div th:if="${message}" th:text="${message}"></div>
+</body>
+</html>

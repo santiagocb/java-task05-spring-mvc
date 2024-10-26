@@ -16,7 +16,6 @@ public class UserAccountService {
 
     public static final Logger logger = LoggerFactory.getLogger(UserAccountService.class);
 
-
     private UserAccountRepository userAccountRepository;
 
     private UserService userService;

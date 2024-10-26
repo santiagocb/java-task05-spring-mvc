@@ -5,6 +5,7 @@ import com.ticketland.entities.Ticket;
 import com.ticketland.entities.User;
 import com.ticketland.entities.UserAccount;
 import com.ticketland.repositories.TicketRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +37,12 @@ public class TicketService {
 
     public List<Ticket> getBookedTickets(UserAccount userAccount, int pageSize, int pageNum) {
         return ticketRepository.findAllByUserAccount(userAccount, PageRequest.of(pageNum - 1, pageSize)).getContent();
+    }
+
+    @Transactional
+    public void preloadTickets(List<Ticket> tickets) {
+        for (Ticket ticket : tickets) {
+            ticketRepository.save(ticket);
+        }
     }
 }
