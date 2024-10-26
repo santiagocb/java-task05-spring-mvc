@@ -12,12 +12,14 @@
         <th>Name</th>
         <th>Place</th>
         <th>Date</th>
+        <th>Ticket Price</th>
     </tr>
     <tr th:each="e : ${events}">
         <td th:text="${e.id}">Event ID</td>
         <td th:text="${e.name}">Event Name</td>
         <td th:text="${e.place}">Event Place</td>
         <td th:text="${e.date}">Event Date</td>
+        <td th:text="${e.ticketPrice}">Ticket Price</td>
     </tr>
 </table>
 

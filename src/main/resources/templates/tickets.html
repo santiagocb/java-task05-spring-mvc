@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register User</title>
+</head>
+<body>
+<h1>Ticket List</h1>
+<table>
+    <tr>
+        <th>Ticket ID</th>
+        <th>User ID</th>
+        <th>User Name</th>
+        <th>Event ID</th>
+        <th>Event Name</th>
+    </tr>
+    <tr th:each="t : ${tickets}">
+        <td th:text="${t.id}">Ticket ID</td>
+        <td th:text="${t.getUser().getUser().getId()}">User ID</td>
+        <td th:text="${t.getUser().getUser().getName()}">User Name</td>
+        <td th:text="${t.getEvent().getId()}">Event ID</td>
+        <td th:text="${t.getEvent().getName()}">Event Name</td>
+    </tr>
+</table>
+
+<h1>Book Ticket</h1>
+<form th:action="@{/tickets/booking}" method="post">
+    <p>Id: <input type="text" name="userId" required/></p>
+    <p>Name: <input type="text" name="eventId" required/></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+
+</body>
+</html>

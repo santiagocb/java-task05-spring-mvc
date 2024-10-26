@@ -37,6 +37,10 @@ public class BookingFacade {
         userAccountService.createAccount(user.getId());
     }
 
+    public UserAccount getUserAccount(String userId) {
+        return userAccountService.findByUserId(userId);
+    }
+
     public void bookTicket(String userId, String eventId) throws InsufficientFundsException {
         UserAccount account = userAccountService.findByUserId(userId);
         Event event = eventService.findByEventId(eventId);
@@ -49,10 +53,6 @@ public class BookingFacade {
         ticketService.generate(new Ticket(account, event));
     }
 
-    public void createAccount(String userId) {
-        userAccountService.createAccount(userId);
-    }
-
     public void refillAccount(String userId, double amount) {
         userAccountService.refillBalance(userId, amount);
     }
@@ -61,7 +61,7 @@ public class BookingFacade {
         return userAccountService.findAll();
     }
 
-    public List<Ticket> showAllTickets() {
+    public List<Ticket> getAllTickets() {
         return ticketService.findAll();
     }
 
@@ -69,11 +69,15 @@ public class BookingFacade {
         return eventService.create(event);
     }
 
-    public List<Event> showAllEvents() {
+    public List<Event> getAllEvents() {
         return eventService.findAll();
     }
 
-    public List<Ticket> showTicketsByUserAccountId(String userAccountId) {
+    public List<Ticket> getTicketsByUserAccountId(String userAccountId) {
         return ticketService.findTicketsByAccountUserId(userAccountId);
+    }
+
+    public List<Ticket> getBookedTickets(UserAccount userAccount, int pageSize, int pageNum) {
+        return ticketService.getBookedTickets(userAccount, pageSize, pageNum);
     }
 }

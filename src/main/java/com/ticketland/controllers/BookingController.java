@@ -1,14 +1,11 @@
 package com.ticketland.controllers;
 
+import com.ticketland.entities.Event;
 import com.ticketland.entities.Ticket;
-import com.ticketland.entities.User;
 import com.ticketland.facades.BookingFacade;
-import com.ticketland.services.TicketService;
-import com.ticketland.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,25 +15,22 @@ import java.util.List;
 public class BookingController {
 
     private final BookingFacade bookingFacade;
-    private final TicketService ticketService;
 
-    public BookingController(BookingFacade bookingFacade, TicketService ticketService) {
+    public BookingController(BookingFacade bookingFacade) {
         this.bookingFacade = bookingFacade;
-        this.ticketService = ticketService;
     }
 
-
-    @PostMapping("/book-ticket")
-    public String bookTicket(@RequestParam String userId, @RequestParam String eventId, Model model) {
-        bookingFacade.bookTicket(userId, eventId);
-        List<Ticket> tickets = ticketService.findAll();
+    @GetMapping("/tickets")
+    public String renderEventForm(Model model) {
+        List<Ticket> tickets = bookingFacade.getAllTickets();
+        model.addAttribute("event", new Event());
         model.addAttribute("tickets", tickets);
-        return "book-ticket";
+        return "tickets";
     }
 
-    @PostMapping("/refill-account")
-    public String refillAccount(@RequestParam String userId, @RequestParam double amount) {
-        bookingFacade.refillAccount(userId, amount);
-        return "refill-account";
+    @PostMapping("/tickets/booking")
+    public String bookTicket(@RequestParam String userId, @RequestParam String eventId) {
+        bookingFacade.bookTicket(userId, eventId);
+        return "redirect:/tickets?success";
     }
 }

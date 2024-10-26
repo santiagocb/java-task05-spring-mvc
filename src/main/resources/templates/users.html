@@ -28,5 +28,12 @@
     <p>Email: <input type="email" th:field="*{email}" required/></p>
     <p><input type="submit" value="Submit" /></p>
 </form>
+
+<h1>Refill User Account</h1>
+<form th:action="@{/accounts/refill}"  method="post">
+    <p>User ID: <input type="text" name="userId" required/></p>
+    <p>Amount: <input type="number" name="amount" required/></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
 </body>
 </html>

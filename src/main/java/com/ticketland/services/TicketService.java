@@ -1,7 +1,11 @@
 package com.ticketland.services;
 
+import com.ticketland.entities.Event;
 import com.ticketland.entities.Ticket;
+import com.ticketland.entities.User;
+import com.ticketland.entities.UserAccount;
 import com.ticketland.repositories.TicketRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,5 +32,9 @@ public class TicketService {
     public List<Ticket> findAll() {
         return StreamSupport.stream(ticketRepository.findAll().spliterator(), false)
                 .collect(Collectors.toList());
+    }
+
+    public List<Ticket> getBookedTickets(UserAccount userAccount, int pageSize, int pageNum) {
+        return ticketRepository.findAllByUserAccount(userAccount, PageRequest.of(pageNum - 1, pageSize)).getContent();
     }
 }

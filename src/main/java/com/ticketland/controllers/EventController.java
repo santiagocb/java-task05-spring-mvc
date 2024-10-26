@@ -23,7 +23,7 @@ public class EventController {
 
     @GetMapping("/events")
     public String renderEventForm(Model model) {
-        List<Event> events = bookingFacade.showAllEvents();
+        List<Event> events = bookingFacade.getAllEvents();
         model.addAttribute("event", new Event());
         model.addAttribute("events", events);
         return "events";
