@@ -19,10 +19,10 @@ The target of this exercise is to practice Spring MVC with Java 17.
 4. Run command to stop Docker execution: `docker stop lil-postgres`
 
 ## Outputs
-Index page
+#### Index page
 ![Screenshot 2024-10-26 at 12 22 43 PM](https://github.com/user-attachments/assets/4df5380a-5517-4b59-b339-a50710be34d4)
 
-Users page
+#### Users page
 ![Screenshot 2024-10-26 at 12 22 53 PM](https://github.com/user-attachments/assets/cd8c85ad-a155-47d0-9a67-0d39878c77ee)
 
 - Users page / Refill account
